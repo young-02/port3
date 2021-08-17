@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CALCULATOR</title>
+   <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="calculator">
+        <form action="" name="forms">
+            <input type="text" name="output" readonly class="output">
+            <input type="button" class="clear" value="C">
+            <input type="button" class="operator" value="/">
+            <input type="button" value="1" >
+            <input type="button" value="2">
+            <input type="button" value="3">
+            <input type="button"  class="operator" value="*">
+            <input type="button" value="4" >
+            <input type="button" value="5" >
+            <input type="button" value="6" >
+            <input type="button"  class="operator" value="+" >
+            <input type="button" value="7" >
+            <input type="button" value="8" >
+            <input type="button" value="9" >
+            <input type="button"  class="operator" value="-" >
+            <input type="button"  class="dot" value="." >
+            <input type="button" value="0" >
+            <input type="button"  class="operator result" value="=">
+        </form>
+    </div>
+
+
+    <script>
+
+        function getInputValue(){
+            let input = event.target.value
+            console.log(input);
+            printValue(input);
+        }
+
+        let buttons = document.getElementsByTagName('input');
+        console.log(buttons.length);
+        for(var i =0; i<buttons.length;i++){
+            buttons[i].setAttribute('onclick','getInputValue()');
+        }
+
+        function printValue(val){
+            let out = document.querySelector(".output");
+            let current = out.value;
+            if(out.value == "0"){
+                
+                if(val!= "C" && val!="DEL"){ 
+                out.value ="";
+                out.value += val;
+                }
+            }
+            else{
+                if(val == "DEL" ){
+                console.log(current[current.length-1]);
+                out.value = current.slice(0,-1);
+                if(out.value.length <= 1){
+                    out.value = "0";
+                }
+                }
+                if(val!= "C" && val!="DEL" && val!="="){ 
+                out.value += val;
+                }
+                if(val =="="){
+                let res = out.value;
+                out.value = eval(res);
+                }
+                if(val == "C"){
+                out.value = "0";
+                }
+            }
+            
+            }
+
+    </script>
+</body>
+</html>

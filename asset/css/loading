@@ -1,0 +1,65 @@
+var $loader = document.querySelector('.loader')
+
+window.onload = function() {
+  $loader.classList.add('loader--active')
+};
+
+ 
+  window.setTimeout(function () {
+    $loader.classList.remove('loader--active');
+    
+    // section1 제목 
+    $('.strip').each(function(){
+      var $t = $(this),
+          rows = $.trim($t.html()).split('<br>');
+
+      $t.html('');
+
+      $.each(rows, function(i, val){
+        $('<span class="row"></span>').appendTo($t);
+
+        var letters = $.trim(val).split('');
+
+        $.each(letters, function(j, v){
+          v = (v == ' ') ? '&nbsp;' : v;
+          $('<span>' + $.trim(v) + '</span>').appendTo($('.row:last', $t));
+        });
+
+      });
+      for (i = 0; i < $('.strip span').length; i++) {
+          (function(ind) {
+            setTimeout(function(){
+                $('.strip span:not(".row")').eq(ind).toggleClass('animate');
+            }, ind * 15);
+          })(i);
+        }
+    });
+
+      //section01
+      gsap.set(".intro_header", {opacity: 0, y: -50})
+      gsap.set(".intro-wrap .bg", {opacity: 0, y: -100, height:'0'})
+      gsap.set(".intro-content .back-title", {opacity: 0, y: 250})
+
+
+      setTimeout(()=>{
+          gsap.to(".intro_header", {delay: 0.8,duration: 0.8 ,opacity: 1, y: 0})
+          gsap.to(".intro-wrap .bg", {opacity: 1, y: 0, height:'100vh'})
+          gsap.to(".intro-content .back-title", {delay: 0.4, duration: 0.5, opacity: 1, y: 0})
+
+      },2000);
+
+  }, 3000)
+// })
+
+var cnt=document.getElementById("count"); 
+var water=document.getElementById("water");
+var percent=cnt.innerText;
+var interval;
+interval=setInterval(function(){ 
+percent++; 
+cnt.innerHTML = percent; 
+water.style.transform='translate(0'+','+(100-percent)+'%)';
+if(percent==100){
+    clearInterval(interval);
+}
+},30);

@@ -1,0 +1,11 @@
+:root{
+    --font_M:'fontYouandiModernTR';
+    --font_B: 'YouandiModern HeadExtraBold.woff';
+    --fontSizeD:18px;
+    --fontSizeTittle:3vw;
+    --fontSizeTop:3.8vw;
+    --fontSizeSub:1.8vw;
+    --bg_g:#f2f2f2;
+    /* --bg_font:20vw; */
+    --fontColor:#0F06AF
+}
